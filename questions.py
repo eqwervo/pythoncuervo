@@ -24,7 +24,8 @@ answers = [
 # Índice de la respuesta correcta para cada pregunta, el el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 
-# union de cada conjunto pregunta, respuesta, indice
+# union de cada conjunto pregunta, respuesta, indice. 
+# Reemplazo random.choise por random.sample que no repite ocurrencias
 questions_to_ask = random.sample(list(zip(questions, answers, correct_answers_index)), k=3)
 
 # puntuaje del usuario
