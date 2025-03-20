@@ -1,3 +1,5 @@
+inventory = {}
+
 # menu principal
 def main_menu():
     print('Gestion de inventario. Menu principal')
@@ -5,31 +7,31 @@ def main_menu():
     print('2. Eliminar producto')
     print('3. Mostrar inventario')
     print('4. Salir')
+    
 # funcion para agregar productos
 def add_product(inventory):
     name = input('Ingrese el nombre del producto: ')
     if name in inventory:
         print('El producto ya existe.')
     else:
-        try:
-            stock = int(input('Ingrese el stock del producto: '))
-            inventory[name.capitalize()] = stock
-        except:
-            print('Ingrese un valor correcto')
-            
+        stock = int(input('Ingrese el stock del producto: '))
+        inventory[name.capitalize()] = stock
+
+# funcion para eliminar productos
 def remove_product(inventory):
     name = input('Ingrese el nombre del producto a eliminar: ')
     if name in inventory:
-        del inventory[name]
+        del inventory[name.capitalize()]
     else:
         print('El producto no existe')
-    
+
+# funcion para mostrar inventario
 def show_inventory(inventory):
-    print(inventory)
+    print(f'Producto'{inventory[key]})
 print()
 
 
-inventory = {}
+
 
 while True:
     main_menu()

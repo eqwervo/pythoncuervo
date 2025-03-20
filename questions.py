@@ -32,42 +32,41 @@ questions_to_ask = random.sample(list(zip(questions, answers, correct_answers_in
 user_points = float(0)
 
 # El usuario deberá contestar 3 preguntas. Se reemplaza el range por un for 
-# que itera sobre el conjunto (Preg,Res,Ind) que fueron unidas en el zip
+# que itera sobre el conjunto (Preg,Res,Ind) que fueron unidas en el zip y dado k=3 son tres preguntas
 for quest, answ, ind in questions_to_ask:
-    
-    #question_index = random.randint(0, len(questions) - 1)
-    
-    # Se muestra la pregunta y las respuestas posibles
+   
+# Se muestra la pregunta y las respuestas posibles
     print(quest)
     for i,answer in enumerate(answ):
         print(f"{i + 1}. {answer}")
 
     # El usuario tiene 2 intentos para responder correctamente
-    
+
     for intento in range(2):
-        # try con una primera ocurrencia donde ingresa un int, en caso que ingrese otro valor va al except
-        try:
-            user_answer = int(input("Respuesta: ")) - 1
-            if 0 <= user_answer < len(answ):
-            # Se verifica si la respuesta es correcta
-                if user_answer == ind:
-                    print("¡Correcto!")
-                    user_points += 1
-                    break
+            # Comprueba que sea numerico y que esté entre los valores de respuesta posibles
+            user_answer = input("Respuesta: ")
+            if user_answer.isnumeric():
+                user_answer = int(user_answer) - 1
+                if 0 <= user_answer < len(answ):
+                    if user_answer == ind:
+                        print("¡Correcto!")
+                        user_points += 1
+                        break
+                    else:
+                        user_points -= 0.5
+                else:
+                    print("Ingrese una respuesta válida.")
             else: 
                 print("Ingrese una respuesta válida.")
-        except:
-            print("Ingrese una respuesta válida.")
-            
-# si no logra en dos intentos responder correctamente entra en el else
+    # si no logra en dos intentos responder correctamente entra en el else
     else:
-                    # Si el usuario no responde correctamente después de 2 intentos,
-                    # se muestra la respuesta correcta
-                    print("Incorrecto. La respuesta correcta es:")
-                    user_points += 0.5
-                    print(answ[ind])
+        # Si el usuario no responde correctamente después de 2 intentos,
+        # se muestra la respuesta correcta
+        print("Incorrecto. La respuesta correcta es:")
+        #user_points -= 0.5
+        print(answ[ind])
 
-    
+
     # Se imprime un blanco al final de la pregunta
     print()
 print(f"Su puntaje fue:  {user_points}")
